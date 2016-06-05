@@ -9,7 +9,7 @@ angular.module('DR_Annotation')
                 return $http.get('server/ch08.txt');
               },
               // get .xml file
-              getAnnotation: function() {
+              getAnnotations: function() {
                 return $http.get('server/ch08.txt.xml');
               }
 

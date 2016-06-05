@@ -8,9 +8,16 @@ angular.module('DR_Annotation')
 
       DataService.getChapter()
         .then(function(chapter) {
-          console.log("Chapter", chapter);
           $scope.chapterText = chapter.data;  //.replace(/\n/g,"<br>");
           $scope.sub = $scope.chapterText.substring(45, 54 + 1);
+
+          DataService.getAnnotations()
+            .then(function (data) {
+               console.log('annotations', data);
+            })
+            .catch(function (error) {
+               console.log("ERROR", error);
+            });
         })
         .catch(function (error) {
            console.log("ERROR", error);

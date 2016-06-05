@@ -1,7 +1,9 @@
-angular.module('DR_Annotation', ['ui.router', 'ngSanitize'])
+angular.module('DR_Annotation', ['ui.router', 'ngSanitize', 'xml'])
 
-  .config(['$stateProvider', '$urlRouterProvider',
-    function($stateProvider, $urlRouterProvider) {
+  .config(['$stateProvider', '$urlRouterProvider', '$httpProvider',
+    function($stateProvider, $urlRouterProvider, $httpProvider) {
+
+      $httpProvider.interceptors.push('xmlHttpInterceptor');
 
       $stateProvider
         .state('home', {

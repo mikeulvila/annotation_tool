@@ -5,12 +5,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- styles -->
-    <link rel="stylesheet" href="/vendor/bootstrap/dist/css/bootstrap.min.css" type="text/css">
+    <link rel="stylesheet" href="/lib/bower_components/bootstrap/dist/css/bootstrap.min.css" type="text/css">
     <link rel="stylesheet" href="/styles/main.css" type="text/css">
   </head>
 
-  <body ng-app="Capstone">
-    <nav ng-controller='NavController' class="navbar navbar-inverse navbar-fixed-top logo">
+  <body ng-app="DR_Annotation">
+    <nav class="navbar navbar-inverse navbar-fixed-top logo">
       <div class="container-fluid">
         <!-- Brand and toggle get grouped for better mobile display -->
         <div class="navbar-header">
@@ -26,7 +26,7 @@
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
           <ul ng-show='user' class="nav navbar-nav navbar-right">
-            <li><a ui-sref=""></a></li>
+            <li><a></a></li>
           </ul>
         </div><!-- /.navbar-collapse -->
       </div><!-- /.container-fluid -->
@@ -42,8 +42,6 @@
     <script type="text/javascript" src="/lib/bower_components/angular-ui-router/release/angular-ui-router.min.js"></script>
     <!-- angular app.js -->
     <script type="text/javascript" src="/app/app.js"></script>
-    <!-- angular routes -->
-    <script type="text/javascript" src="/app/appRoutes.js"></script>
     <!-- angular controllers -->
     <script type="text/javascript" src="/app/controllers/MainCtrl.js"></script>
     <!-- angular services -->

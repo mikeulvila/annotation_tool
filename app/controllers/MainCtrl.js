@@ -10,12 +10,18 @@ angular.module('DR_Annotation')
         .then(function(chapter) {
           console.log("Chapter", chapter);
           $scope.chapterText = chapter.data;  //.replace(/\n/g,"<br>");
-          $scope.sub = $scope.chapterText.substring(157, 161 + 1);
+          $scope.sub = $scope.chapterText.substring(45, 54 + 1);
         })
         .catch(function (error) {
            console.log("ERROR", error);
         });
 
+      $scope.selectText = function (event) {
+        var selection = document.getSelection();
+        var start = selection.anchorOffset < selection.focusOffset ? selection.anchorOffset : selection.focusOffset;
+        var end = selection.anchorOffset < selection.focusOffset ? selection.focusOffset - 1: selection.anchorOffset - 1;
+        console.log('Selection', selection, start, end); // also think about getRangeAt(0) or createRange()
+      }
 
 
 

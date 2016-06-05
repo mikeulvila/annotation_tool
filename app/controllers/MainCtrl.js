@@ -5,18 +5,20 @@ angular.module('DR_Annotation')
 
       $scope.chapterTitle = "Chapter 8"
       $scope.chapterText = "";
+      $scope.annotationArray = [];
 
-      DataService.getChapter()
+      DataService.getChapterText()
         .then(function(chapter) {
           $scope.chapterText = chapter.data;  //.replace(/\n/g,"<br>");
           $scope.sub = $scope.chapterText.substring(45, 54 + 1);
 
-          DataService.getAnnotations()
-            .then(function (data) {
-               console.log('annotations', data);
+          DataService.getChapterAnnotations()
+            .then(function (response) {
+              $scope.annotationArray = response.data.document.span;
+              console.log('annotations', $scope.annotationArray);
             })
             .catch(function (error) {
-               console.log("ERROR", error);
+              console.log("ERROR", error);
             });
         })
         .catch(function (error) {

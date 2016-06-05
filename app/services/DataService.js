@@ -5,11 +5,11 @@ angular.module('DR_Annotation')
 
           return {
               // get .txt file
-              getChapter: function() {
+              getChapterText: function() {
                 return $http.get('server/ch08.txt');
               },
               // get .xml file
-              getAnnotations: function() {
+              getChapterAnnotations: function() {
                 return $http.get('server/ch08.txt.xml');
               }
 

@@ -6,7 +6,22 @@
       <p ng-bind-html="chapterText" ng-mouseup="selectText($event)"></p>
     </div>
     <div class="col-sm-4">
-      <p>substring = {{sub}}</p>
+      <ul>
+        <li ng-repeat="annotation in annotationArray">
+          <div>
+            <h5 class="category">{{ annotation._category }}</h5>
+            <p>
+              <em>
+                {{ annotation.extent.charseq.__text }}
+              </em>
+              <small>
+                Start: {{ annotation.extent.charseq._START }}
+                End: {{ annotation.extent.charseq._END }}
+              </small>
+            </p>
+          </div>
+        </li>
+      </ul>
     </div>
   </div>
 </div>

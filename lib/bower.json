@@ -1,0 +1,22 @@
+{
+  "name": "annotation_tool",
+  "homepage": "https://github.com/mikeulvila/annotation_tool",
+  "authors": [
+    "Mike Ulvila <mikeulvila@me.com>"
+  ],
+  "description": "dr_assignment",
+  "main": "",
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular": "^1.5.6",
+    "angular-ui-router": "^0.3.1",
+    "bootstrap": "^3.3.6"
+  }
+}

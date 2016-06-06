@@ -4,14 +4,13 @@ angular.module('DR_Annotation')
     function($scope, $state, DataService) {
 
       $scope.chapterTitle = "Chapter 8"
-      $scope.chapterText = "";
+      $scope.annotatedChapterText = "";
+      var originalChapterText = "";
       $scope.annotationArray = [];
-      var matchCount = 0;
 
       DataService.getChapterText()
         .then(function(chapter) {
-          $scope.chapterText = chapter.data;  //.replace(/\n/g,"<br>");
-          $scope.sub = $scope.chapterText.substring(1576, 1585 + 1);
+          originalChapterText = chapter.data;  //.replace(/\n/g,"<br>");
 
           DataService.getChapterAnnotations()
             .then(function (response) {
@@ -19,17 +18,14 @@ angular.module('DR_Annotation')
               angular.forEach($scope.annotationArray, function (value, index) {
                  var start = parseInt(value.extent.charseq._START) ;
                  var end = parseInt(value.extent.charseq._END) + 1;
-                 var subText = $scope.chapterText.substring(start, end);
+                 var subText = originalChapterText.substring(start, end);
                  var anntText = value.extent.charseq.__text;
-                 if (anntText === subText) {
-                  matchCount++;
-                 } else {
-                  console.log('NOT MATCH!!!');
-                 }
+                 var category = value._category;
 
+                 var hiliteText = '<span class="' + category + '">' + subText + '</span>';
+                 $scope.annotatedChapterText += hiliteText;
               });
-              console.log("matchCount", matchCount);
-              console.log("annotationArray length: ", $scope.annotationArray.length);
+
             })
             .catch(function (error) {
               console.log("ERROR", error);

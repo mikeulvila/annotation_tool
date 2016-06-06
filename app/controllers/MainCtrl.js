@@ -6,16 +6,30 @@ angular.module('DR_Annotation')
       $scope.chapterTitle = "Chapter 8"
       $scope.chapterText = "";
       $scope.annotationArray = [];
+      var matchCount = 0;
 
       DataService.getChapterText()
         .then(function(chapter) {
           $scope.chapterText = chapter.data;  //.replace(/\n/g,"<br>");
-          $scope.sub = $scope.chapterText.substring(45, 54 + 1);
+          $scope.sub = $scope.chapterText.substring(1576, 1585 + 1);
 
           DataService.getChapterAnnotations()
             .then(function (response) {
               $scope.annotationArray = response.data.document.span;
-              console.log('annotations', $scope.annotationArray);
+              angular.forEach($scope.annotationArray, function (value, index) {
+                 var start = parseInt(value.extent.charseq._START) ;
+                 var end = parseInt(value.extent.charseq._END) + 1;
+                 var subText = $scope.chapterText.substring(start, end);
+                 var anntText = value.extent.charseq.__text;
+                 if (anntText === subText) {
+                  matchCount++;
+                 } else {
+                  console.log('NOT MATCH!!!');
+                 }
+
+              });
+              console.log("matchCount", matchCount);
+              console.log("annotationArray length: ", $scope.annotationArray.length);
             })
             .catch(function (error) {
               console.log("ERROR", error);

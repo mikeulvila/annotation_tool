@@ -10,21 +10,28 @@ angular.module('DR_Annotation')
 
       DataService.getChapterText()
         .then(function(chapter) {
-          originalChapterText = chapter.data;  //.replace(/\n/g,"<br>");
+          $scope.annotatedChapterText = chapter.data;  //.replace(/\n/g,"<br>");
 
           DataService.getChapterAnnotations()
             .then(function (response) {
-              $scope.annotationArray = response.data.document.span;
+
+              $scope.annotationArray = response.data.document.span.reverse();
+
               angular.forEach($scope.annotationArray, function (value, index) {
                  var start = parseInt(value.extent.charseq._START) ;
                  var end = parseInt(value.extent.charseq._END) + 1;
-                 var subText = originalChapterText.substring(start, end);
-                 var anntText = value.extent.charseq.__text;
+                 var subText = $scope.annotatedChapterText.substring(start, end);
                  var category = value._category;
-
+                 var preText = $scope.annotatedChapterText.substring(0, start);
                  var hiliteText = '<span class="' + category + '">' + subText + '</span>';
-                 $scope.annotatedChapterText += hiliteText;
+                 var postText = $scope.annotatedChapterText.substring(end);
+
+
+                 $scope.annotatedChapterText = preText + hiliteText + postText;
+
               });
+
+              $scope.annotationArray.reverse();
 
             })
             .catch(function (error) {

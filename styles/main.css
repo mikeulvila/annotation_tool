@@ -1,19 +1,17 @@
 body {
-  margin-top: 50px;
+  margin-top: 53px;
 }
 
-span.PERSON {
+.PERSON {
   background-color: #FFFF00;
 }
 
-span.LOCATION {
+.LOCATION {
   background-color: #00FF00;
 }
 
-span.ORGANIZATION {
+.ORGANIZATION {
   background-color: #FF0000;
 }
 
-span.hilite {
-  background-color: #FFFF00;
-}
+

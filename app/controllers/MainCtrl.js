@@ -1,7 +1,7 @@
 // app/controllers/MainCtrl.js
 angular.module('DR_Annotation')
-  .controller('MainController', ['$scope', '$state', '$log', 'DataService',
-    function($scope, $state, $log, DataService) {
+  .controller('MainController', ['$scope', '$state', '$log', '$sce', 'DataService',
+    function($scope, $state, $log, $sce, DataService) {
 
       $scope.error;
       $scope.annotateMode = false;
@@ -43,12 +43,13 @@ angular.module('DR_Annotation')
                    var category = value._category;
                    var arrayIndex = index.toString();
                    var preText = $scope.annotatedChapterText.substring(0, start);
-                   var hiliteText = '<span class="' + category + '">' + subText + '</span>';
+                   var hiliteText = '<span id="' + arrayIndex + '" class="' + category + '">' + subText + '</span>';
                    var postText = $scope.annotatedChapterText.substring(end);
 
                    $scope.annotatedChapterText = preText + hiliteText + postText;
                 });
 
+                $scope.annotatedChapterText = $sce.trustAsHtml($scope.annotatedChapterText);
                 $scope.annotationArray.reverse();
 
               })

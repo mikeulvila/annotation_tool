@@ -16,8 +16,17 @@ angular.module('DR_Annotation')
         loadChapterAndAnnotations($scope.selectChapter);
       };
 
+      $scope.delete = function (event) {
+        var index = parseInt(event.target.attributes[0].value);
+        if (event.target.tagName === "SPAN") {
+          $scope.annotatedChapterText = $scope.chapterText;
+          $scope.annotationArray.splice(index, 1);
+          $scope.annotatedChapterText = $sce.trustAsHtml(createAnnotatedChapterText($scope.annotatedChapterText, $scope.annotationArray));
+        }
+      };
+
       $scope.save = function () {
-        var annotationsJSON = angular.toJson($scope.annotationArray, true);
+        var annotationsJSON = angular.toJson($scope.annotationArray.reverse(), true);
         if (annotationsJSON) {
           $log.info(annotationsJSON);
         } else {

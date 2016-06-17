@@ -73,7 +73,7 @@ app.controller('MainController', ['$scope', '$state', '$log', '$sce', 'DataServi
           var arrayIndex = index.toString();
           var preText = text.substring(0, start);
           var hiliteText =
-          '<span data-index="' + arrayIndex + '" class="' + category + '">' + subText + '</span>';
+          '<span data-index="' + arrayIndex + '" class="' + category + '" pop-up>' + subText + '</span>';
           var postText = text.substring(end);
           text = preText + hiliteText + postText;
         });

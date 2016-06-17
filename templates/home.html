@@ -29,14 +29,14 @@
       </select>
       <!-- END SELECT CHAPTER -->
 
-      <h2 ng-show="selectChapter">Chapter {{selectChapter}}</h2>
+      <h2 ng-show="selectChapter"><span pop-up>Chapter {{selectChapter}}</span></h2>
       <button class="btn btn-primary" ng-click="save()">Save Annotations</button>
       <div class="checkbox">
         <label>
           <input type="checkbox" ng-model="annotateMode"> Annotate Mode
         </label>
       </div>
-      <p ng-bind-html="annotatedChapterText" ng-click="delete($event)" ng-hide="annotateMode"></p>
+      <p dynamic ng-bind-html="annotatedChapterText" ng-click="delete($event)" ng-hide="annotateMode"></p>
       <p ng-bind-html="chapterText" ng-mouseup="selectText($event)" ng-show="annotateMode"></p>
     </div>
     <div class="col-sm-4">

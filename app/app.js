@@ -1,4 +1,4 @@
-angular.module('DR_Annotation', ['ui.router', 'ngSanitize', 'xml'])
+var app = angular.module('DR_Annotation', ['ui.router', 'ngSanitize', 'xml'])
 
   .config(['$stateProvider', '$urlRouterProvider', '$httpProvider',
     function($stateProvider, $urlRouterProvider, $httpProvider) {

@@ -1,6 +1,6 @@
 // app/controllers/MainCtrl.js
-angular.module('DR_Annotation')
-  .controller('MainController', ['$scope', '$state', '$log', '$sce', 'DataService',
+
+app.controller('MainController', ['$scope', '$state', '$log', '$sce', 'DataService',
     function($scope, $state, $log, $sce, DataService) {
 
       $scope.error;

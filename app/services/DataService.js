@@ -1,6 +1,6 @@
 // public/app/services/UserService.js
-angular.module('DR_Annotation')
-    .factory('DataService', ['$http',
+
+app.factory('DataService', ['$http',
         function($http, $state) {
 
           return {

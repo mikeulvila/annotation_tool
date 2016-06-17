@@ -21,7 +21,8 @@ app.controller('MainController', ['$scope', '$state', '$log', '$sce', 'DataServi
         if (event.target.tagName === "SPAN") {
           $scope.annotatedChapterText = $scope.chapterText;
           $scope.annotationArray.splice(index, 1);
-          $scope.annotatedChapterText = $sce.trustAsHtml(createAnnotatedChapterText($scope.annotatedChapterText, $scope.annotationArray));
+          $scope.annotatedChapterText =
+          createAnnotatedChapterText($scope.annotatedChapterText, $scope.annotationArray);
         }
       };
 
@@ -50,7 +51,7 @@ app.controller('MainController', ['$scope', '$state', '$log', '$sce', 'DataServi
                 $scope.annotatedChapterText = chapter.data;  //.replace(/\n/g,"<br>");
                 $scope.annotationArray = response.data.document.span.reverse();
                 $scope.annotatedChapterText =
-                $sce.trustAsHtml(createAnnotatedChapterText($scope.annotatedChapterText, $scope.annotationArray));
+                createAnnotatedChapterText($scope.annotatedChapterText, $scope.annotationArray);
               })
               .catch(function (error) {
                 $scope.error = error;

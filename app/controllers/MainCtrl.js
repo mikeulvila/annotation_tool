@@ -34,8 +34,12 @@ angular.module('DR_Annotation')
         }
       };
 
-      function loadChapterAndAnnotations (chapterNumber) {
+      // angular.element(document.getElementsByTagName(span)).tooltip({
+      //   title: "Click to delete annotation",
+      //   placement: "top"
+      // });
 
+      function loadChapterAndAnnotations (chapterNumber) {
         DataService.getChapterText(chapterNumber)
           .then(function(chapter) {
 

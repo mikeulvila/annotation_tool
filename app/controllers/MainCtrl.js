@@ -11,6 +11,8 @@ angular.module('DR_Annotation')
       $scope.selectChapter;
 
       $scope.loadChapter = function () {
+        $scope.error = false;
+        $scope.annotatedChapterText = "";
         loadChapterAndAnnotations($scope.selectChapter);
       };
 
@@ -43,14 +45,13 @@ angular.module('DR_Annotation')
                    var category = value._category;
                    var arrayIndex = index.toString();
                    var preText = $scope.annotatedChapterText.substring(0, start);
-                   var hiliteText = '<span id="' + arrayIndex + '" class="' + category + '">' + subText + '</span>';
+                   var hiliteText = '<span data-index="' + arrayIndex + '" class="' + category + '">' + subText + '</span>';
                    var postText = $scope.annotatedChapterText.substring(end);
 
                    $scope.annotatedChapterText = preText + hiliteText + postText;
                 });
 
                 $scope.annotatedChapterText = $sce.trustAsHtml($scope.annotatedChapterText);
-                $scope.annotationArray.reverse();
 
               })
               .catch(function (error) {

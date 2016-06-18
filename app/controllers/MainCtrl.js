@@ -26,7 +26,7 @@ app.controller('MainController', ['$scope', '$state', '$log', '$sce', 'DataServi
         }
       };
 
-      $scope.save = function () {
+      $scope.saveJSON = function () {
         var annotationsJSON = angular.toJson($scope.annotationArray.reverse(), true);
         if (annotationsJSON) {
           $log.info(annotationsJSON);
@@ -34,11 +34,6 @@ app.controller('MainController', ['$scope', '$state', '$log', '$sce', 'DataServi
           $log.warn('There are no annotations for the current selected chapter.')
         }
       };
-
-      // angular.element(document.getElementsByTagName(span)).tooltip({
-      //   title: "Click to delete annotation",
-      //   placement: "top"
-      // });
 
       function loadChapterAndAnnotations (chapterNumber) {
         DataService.getChapterText(chapterNumber)

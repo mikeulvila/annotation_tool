@@ -17,7 +17,7 @@ app.controller('MainController', ['$scope', '$state', '$log', '$sce', 'DataServi
       };
 
       $scope.addAnnotation = function () {
-        $scope.textSelection = getTextSelection();
+        $scope.newAnnotation = getTextSelection();
       };
 
       $scope.delete = function (event) {

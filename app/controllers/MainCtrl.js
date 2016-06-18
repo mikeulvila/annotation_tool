@@ -79,11 +79,19 @@ app.controller('MainController', ['$scope', '$state', '$log', '$sce', 'DataServi
         return text;
       };
 
-      $scope.selectText = function (event) {
+      function getTextSelection (event) {
         var selection = document.getSelection();
+        var rangeContents = selection.getRangeAt(0).cloneContents();
         var start = selection.anchorOffset < selection.focusOffset ? selection.anchorOffset : selection.focusOffset;
         var end = selection.anchorOffset < selection.focusOffset ? selection.focusOffset - 1: selection.anchorOffset - 1;
-        console.log('Selection', selection, start, end); // also think about getRangeAt(0) or createRange()
+        var span = document.createElement('span');
+        span.appendChild(rangeContents);
+        var rangeText = span.innerHTML;
+        return {
+          text: rangeText,
+          end: end,
+          start: start
+        }
       };
 
 

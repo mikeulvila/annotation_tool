@@ -30,14 +30,14 @@
       <!-- END SELECT CHAPTER -->
 
       <h2 ng-show="selectChapter">Chapter {{selectChapter}}</h2>
-      <button class="btn btn-primary" ng-click="save()">Save Annotations</button>
+      <button class="btn btn-primary" ng-click="saveJSON()">Export Annotations In JSON</button>
       <div class="checkbox">
         <label>
           <input type="checkbox" ng-model="annotateMode"> Annotate Mode
         </label>
       </div>
       <p dynamic ng-bind-html="annotatedChapterText" ng-click="delete($event)" ng-hide="annotateMode"></p>
-      <p ng-bind-html="chapterText" ng-mouseup="selectText($event)" ng-show="annotateMode"></p>
+      <p ng-bind-html="chapterText" ng-mouseup="addAnnotation($event)" ng-show="annotateMode"></p>
     </div>
     <div class="col-sm-4">
       <button class="btn btn-default PERSON">PERSON</button>

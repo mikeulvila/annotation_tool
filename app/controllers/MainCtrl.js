@@ -16,6 +16,10 @@ app.controller('MainController', ['$scope', '$state', '$log', '$sce', 'DataServi
         loadChapterAndAnnotations($scope.selectChapter);
       };
 
+      $scope.addAnnotation = function () {
+        $scope.textSelection = getTextSelection();
+      };
+
       $scope.delete = function (event) {
         var index = parseInt(event.target.attributes[0].value);
         if (event.target.tagName === "SPAN") {

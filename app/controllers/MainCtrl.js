@@ -22,7 +22,7 @@ app.controller('MainController', ['$scope', '$state', '$log', '$sce', 'DataServi
 
       $scope.delete = function (event) {
         var index = parseInt(event.target.attributes[0].value);
-        if (event.target.tagName === "SPAN") {
+        if (event.target.attributes[0].name === "data-index") {
           $scope.annotatedChapterText = $scope.chapterText;
           $scope.annotationArray.splice(index, 1);
           $scope.annotatedChapterText =

@@ -20,6 +20,11 @@ app.controller('MainController', ['$scope', '$state', '$log', '$sce', 'DataServi
         $scope.newAnnotation = getTextSelection();
       };
 
+      $scope.saveAnnotation = function () {
+
+        $scope.newAnnotation
+      };
+
       $scope.delete = function (event) {
         var index = parseInt(event.target.attributes[0].value);
         if (event.target.attributes[0].name === "data-index") {
@@ -81,6 +86,9 @@ app.controller('MainController', ['$scope', '$state', '$log', '$sce', 'DataServi
 
       function getTextSelection (event) {
         var selection = document.getSelection();
+        $log.log(selection);
+        var previousSiblingIndex =
+        selection.anchorNode.parentElement.previousSibling.attributes[0].value;
         var rangeContents = selection.getRangeAt(0).cloneContents();
         var start = selection.anchorOffset < selection.focusOffset ? selection.anchorOffset : selection.focusOffset;
         var end = selection.anchorOffset < selection.focusOffset ? selection.focusOffset - 1: selection.anchorOffset - 1;
@@ -90,7 +98,8 @@ app.controller('MainController', ['$scope', '$state', '$log', '$sce', 'DataServi
         return {
           text: rangeText,
           end: end,
-          start: start
+          start: start,
+          prevIndex: previousSiblingIndex
         }
       };
 

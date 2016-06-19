@@ -36,7 +36,7 @@
           <input type="checkbox" ng-model="annotateMode"> Annotate Mode
         </label>
       </div>
-      <p dynamic ng-bind-html="annotatedChapterText" ng-click="delete($event)" ng-hide="annotateMode"></p>
+      <p dynamic ng-bind-html="annotatedChapterText" ng-mouseup="addAnnotation($event)" ng-click="delete($event)" ng-hide="annotateMode"></p>
       <p ng-bind-html="chapterText" ng-mouseup="addAnnotation($event)" ng-show="annotateMode"></p>
     </div>
     <div class="col-sm-4">

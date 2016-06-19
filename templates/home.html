@@ -47,23 +47,26 @@
         <div class="panel-heading">
           <h3 class="panel-title">Add Annotation</h3>
         </div>
-        <div class="panel-body" ng-model="newAnnotation">
-          <label class="radio-inline">
-            <input type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1">
-            Person
-          </label>
-          <label class="radio-inline">
-            <input type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2">
-            Location
-          </label>
-          <label class="radio-inline">
-            <input type="radio" name="inlineRadioOptions" id="inlineRadio3" value="option3">
-            Organization
-          </label>
-          <p>{{newAnnotation.text}}</p>
-          <p>{{newAnnotation.start}}</p>
-          <p>{{newAnnotation.end}}</p>
-        </div>
+        <form ng-submit="saveAnnotation()">
+          <div class="panel-body" ng-model="newAnnotation">
+            <label class="radio-inline">
+              <input type="radio" ng-model="category" name="categoryOptions" value="PERSON">
+              Person
+            </label>
+            <label class="radio-inline">
+              <input type="radio" ng-model="category" name="categoryOptions" value="LOCATION">
+              Location
+            </label>
+            <label class="radio-inline">
+              <input type="radio" ng-model="category" name="categoryOptions" value="ORGANIZATION">
+              Organization
+            </label>
+            <p>{{newAnnotation.text}}</p>
+            <p>{{newAnnotation.start}}</p>
+            <p>{{newAnnotation.end}}</p>
+          </div>
+          <button type="submit" class="btn btn-default center-block">Save Annotation</button>
+        </form>
       </div>
       <ul class="list-unstyled">
         <li ng-repeat="annotation in annotationArray">

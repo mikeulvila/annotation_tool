@@ -9,6 +9,7 @@ app.controller('MainController', ['$scope', '$state', '$log', '$sce', 'DataServi
       $scope.annotatedChapterText = "";
       $scope.annotationArray;
       $scope.selectChapter;
+      $scope.category;
 
       $scope.loadChapter = function () {
         $scope.error = false;
@@ -18,25 +19,34 @@ app.controller('MainController', ['$scope', '$state', '$log', '$sce', 'DataServi
 
       $scope.addAnnotation = function () {
         $scope.newAnnotation = getTextSelection();
-        $log.log($scope.annotationArray);
+        $log.log($scope.newAnnotation);
       };
 
       $scope.saveAnnotation = function () {
-        var index = $scope.newAnnotation.prevIndex;
-        var start = $scope.newAnnotation.start;
-        var end = $scope.newAnnotation.end;
+        var index = parseInt($scope.newAnnotation.prevIndex);
+        var prevCharseqEnd = parseInt($scope.annotationArray[index].extent.charseq._END);
+        var start = $scope.newAnnotation.start + prevCharseqEnd + 1;
+        var end = $scope.newAnnotation.end + prevCharseqEnd + 1;
         var text = $scope.newAnnotation.text;
+        var category = $scope.category;
         var annotationObj = {
-                              _category: "PERSON",
+                              _category: category,
                               extent: {
                                 charseq: {
-                                  _END: end,
-                                  _START: start,
+                                  _END: end.toString(),
+                                  _START: start.toString(),
                                   __text: text
                                 }
                               }
                             };
-        $scope.annotationArray.splice(index, 0, annotationObj);
+
+        if (category) {
+          $scope.annotationArray.splice(index, 0, annotationObj);
+        } else {
+          $scope.error = { statusText: "Please choose a category" };
+        }
+        $scope.annotatedChapterText = $scope.chapterText;
+        $scope.annotatedChapterText = createAnnotatedChapterText($scope.annotatedChapterText, $scope.annotationArray);
       };
 
       $scope.delete = function (event) {
@@ -100,9 +110,7 @@ app.controller('MainController', ['$scope', '$state', '$log', '$sce', 'DataServi
 
       function getTextSelection (event) {
         var selection = document.getSelection();
-        $log.log(selection);
-        var previousSiblingIndex =
-        selection.anchorNode.parentElement.previousSibling.attributes[0].value;
+        var previousSiblingIndex = selection.anchorNode.parentElement.previousSibling.attributes[0].value;
         var rangeContents = selection.getRangeAt(0).cloneContents();
         var start = selection.anchorOffset < selection.focusOffset ? selection.anchorOffset : selection.focusOffset;
         var end = selection.anchorOffset < selection.focusOffset ? selection.focusOffset - 1: selection.anchorOffset - 1;

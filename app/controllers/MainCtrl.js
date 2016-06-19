@@ -18,11 +18,25 @@ app.controller('MainController', ['$scope', '$state', '$log', '$sce', 'DataServi
 
       $scope.addAnnotation = function () {
         $scope.newAnnotation = getTextSelection();
+        $log.log($scope.annotationArray);
       };
 
       $scope.saveAnnotation = function () {
-
-        $scope.newAnnotation
+        var index = $scope.newAnnotation.prevIndex;
+        var start = $scope.newAnnotation.start;
+        var end = $scope.newAnnotation.end;
+        var text = $scope.newAnnotation.text;
+        var annotationObj = {
+                              _category: "PERSON",
+                              extent: {
+                                charseq: {
+                                  _END: end,
+                                  _START: start,
+                                  __text: text
+                                }
+                              }
+                            };
+        $scope.annotationArray.splice(index, 0, annotationObj);
       };
 
       $scope.delete = function (event) {

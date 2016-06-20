@@ -4,12 +4,12 @@ app.controller('MainController', ['$scope', '$state', '$log', '$sce', 'DataServi
     function($scope, $state, $log, $sce, DataService) {
 
       $scope.error;
-      $scope.annotateMode = false;
       $scope.chapterText = "";
       $scope.annotatedChapterText = "";
       $scope.annotationArray;
       $scope.selectChapter;
       $scope.category;
+      $scope.newAnnotation;
 
       $scope.loadChapter = function () {
         $scope.error = false;
@@ -47,6 +47,8 @@ app.controller('MainController', ['$scope', '$state', '$log', '$sce', 'DataServi
         }
         $scope.annotatedChapterText = $scope.chapterText;
         $scope.annotatedChapterText = createAnnotatedChapterText($scope.annotatedChapterText, $scope.annotationArray);
+        $scope.newAnnotation = "";
+        $scope.category = "";
       };
 
       $scope.delete = function (event) {

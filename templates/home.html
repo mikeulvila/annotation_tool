@@ -2,16 +2,16 @@
   <div class="row">
     <div class="col-sm-8">
 
-      <!-- ERROR ALERT -->
+      <!-- ***** ERROR ALERT ***** -->
       <div ng-show="error" class="alert alert-danger alert-dismissible" role="alert">
         <button ng-click="error = false" type="button" aria-label="Close"><span aria-hidden="true">&times;</span></button>
         <strong>Status: {{error.status}}</strong> {{error.statusText}}
       </div>
-      <!-- END ERROR ALERT -->
+      <!-- ***** END ERROR ALERT ***** -->
 
       <h1>DR Annotation Tool</h1>
 
-      <!-- SELECT CHAPTER -->
+      <!-- ***** SELECT CHAPTER ***** -->
       <label for="selectChapter">Select Chapter</label>
       <select id="selectChapter" class="form-control" name="selectChapter" ng-model="selectChapter" ng-change="loadChapter()">
         <option value="01">1</option>
@@ -27,63 +27,52 @@
         <option value="11">11</option>
         <option value="12">12</option>
       </select>
-      <!-- END SELECT CHAPTER -->
+      <!-- ***** END SELECT CHAPTER ***** -->
 
       <h2 ng-show="selectChapter">Chapter {{selectChapter}}</h2>
-      <button class="btn btn-primary" ng-click="saveJSON()">Export Annotations In JSON</button>
-      <div class="checkbox">
-        <label>
-          <input type="checkbox" ng-model="annotateMode"> Annotate Mode
-        </label>
+      <button class="btn btn-primary" ng-click="saveJSON()">Export Annotations JSON</button>
+      <div>
+        <h4>
+          <label><strong>Categories: </strong></label>
+          <span class="PERSON">Person</span>
+          <span class="LOCATION">Location</span>
+          <span class="ORGANIZATION">Organization</span>
+        </h4>
+
+
       </div>
       <p dynamic ng-bind-html="annotatedChapterText" ng-mouseup="addAnnotation($event)" ng-click="delete($event)" ng-hide="annotateMode"></p>
-      <p ng-bind-html="chapterText" ng-mouseup="addAnnotation($event)" ng-show="annotateMode"></p>
     </div>
-    <div class="col-sm-4">
-      <button class="btn btn-default PERSON">PERSON</button>
-      <button class="btn btn-default LOCATION">LOCATION</button>
-      <button class="btn btn-default ORGANIZATION">ORGANIZATION</button>
-      <div class="panel panel-info">
-        <div class="panel-heading">
-          <h3 class="panel-title">Add Annotation</h3>
-        </div>
-        <form ng-submit="saveAnnotation()">
-          <div class="panel-body" ng-model="newAnnotation">
-            <label class="radio-inline">
-              <input type="radio" ng-model="category" name="categoryOptions" value="PERSON">
-              Person
-            </label>
-            <label class="radio-inline">
-              <input type="radio" ng-model="category" name="categoryOptions" value="LOCATION">
-              Location
-            </label>
-            <label class="radio-inline">
-              <input type="radio" ng-model="category" name="categoryOptions" value="ORGANIZATION">
-              Organization
-            </label>
-            <p>{{newAnnotation.text}}</p>
-            <p>{{newAnnotation.start}}</p>
-            <p>{{newAnnotation.end}}</p>
+
+    <!-- ***** ADD ANNOTATION PANEL ***** -->
+    <div id="add-annotation-panel" ng-show="newAnnotation" class="col-sm-4 panel panel-info">
+      <div class="panel-heading">
+        <h3 class="panel-title">Add Annotation</h3>
+      </div>
+      <form ng-submit="saveAnnotation()">
+        <div class="panel-body" ng-model="newAnnotation">
+          <label><strong>Select Category: </strong></label>
+          <label class="radio PERSON">
+            <input type="radio" ng-model="category" name="categoryOptions" value="PERSON">
+            Person
+          </label>
+          <label class="radio LOCATION">
+            <input type="radio" ng-model="category" name="categoryOptions" value="LOCATION">
+            Location
+          </label>
+          <label class="radio ORGANIZATION">
+            <input type="radio" ng-model="category" name="categoryOptions" value="ORGANIZATION">
+            Organization
+          </label>
+          <div>
+            <label><strong>Text: </strong></label>
+            <em>{{newAnnotation.text}}</em>
           </div>
           <button type="submit" class="btn btn-default center-block">Save Annotation</button>
-        </form>
-      </div>
-      <ul class="list-unstyled">
-        <li ng-repeat="annotation in annotationArray">
-          <div>
-            <h5 class="category">{{ annotation._category }}</h5>
-            <p>
-              <em>
-                {{ annotation.extent.charseq.__text }}
-              </em>
-              <small>
-                Start: {{ annotation.extent.charseq._START }}
-                End: {{ annotation.extent.charseq._END }}
-              </small>
-            </p>
-          </div>
-        </li>
-      </ul>
+        </div>
+      </form>
     </div>
-  </div>
-</div>
+    <!-- ***** END ADD ANNOTATION PANEL ***** -->
+
+  </div> <!-- END ROW -->
+</div> <!-- END CONTAINER -->

@@ -14,4 +14,10 @@ body {
   background-color: #FF0000;
 }
 
+#add-annotation-panel {
+  position: fixed;
+  top: 60px;
+  right: 25px;
+}
+
 

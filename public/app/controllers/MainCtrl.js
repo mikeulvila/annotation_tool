@@ -19,7 +19,6 @@ app.controller('MainController', ['$scope', '$state', '$log', '$sce', 'DataServi
 
       $scope.addAnnotation = function () {
         $scope.newAnnotation = getTextSelection();
-        $log.log($scope.newAnnotation);
       };
 
       $scope.saveAnnotation = function () {
@@ -119,12 +118,15 @@ app.controller('MainController', ['$scope', '$state', '$log', '$sce', 'DataServi
         var span = document.createElement('span');
         span.appendChild(rangeContents);
         var rangeText = span.innerHTML;
+        if (end < start) {
+          return;
+        };
         return {
           text: rangeText,
           end: end,
           start: start,
           prevIndex: previousSiblingIndex
-        }
+        };
       };
 
 

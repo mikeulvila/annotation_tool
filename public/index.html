@@ -14,23 +14,37 @@
       <div class="container-fluid">
         <!-- Brand and toggle get grouped for better mobile display -->
         <div class="navbar-header">
-          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-            <span class="sr-only">Toggle navigation</span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </button>
           <div class="navbar-brand">DR Annotation Tool</div>
+          <button type="button" class="btn btn-default navbar-btn" data-toggle="modal" data-target="#help">Help</button>
         </div>
-
-        <!-- Collect the nav links, forms, and other content for toggling -->
-        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-          <ul ng-show='user' class="nav navbar-nav navbar-right">
-            <li><a></a></li>
-          </ul>
-        </div><!-- /.navbar-collapse -->
       </div><!-- /.container-fluid -->
     </nav>
+    <!-- MODAL -->
+    <div id="help" class="modal fade" tabindex="-1" role="dialog">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title">How to use annotation tool</h4>
+          </div>
+          <div class="modal-body">
+            <dl class="dl-horizontal">
+              <dt>Load Annotations</dt>
+              <dd>Select chapter to load text and annotations.</dd>
+              <dt>Delete Annotation</dt>
+              <dd>Simply click on annotation to remove highlight.</dd>
+              <dt>Add Annotation</dt>
+              <dd>Select text and choose category to save new annotation.</dd>
+              <dt>Export Annotations</dt>
+              <dd>Click the Export Annotations JSON button to print JSON to console.</dd>
+            </dl>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+          </div>
+        </div><!-- /.modal-content -->
+      </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
 
     <!-- route partials -->
     <div ui-view></div>
